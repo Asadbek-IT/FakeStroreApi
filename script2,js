@@ -1,0 +1,52 @@
+// Set up API endpoint and DOM elements
+const API_URL = 'https://fakestoreapi.com/carts';
+const elCartList = document.querySelector(".cart-list");
+const elLoading = document.querySelector(".loading-message");
+
+// Function to fetch and display cart data
+const fetchCarts = async () => {
+  // Show loading message while fetching
+  elLoading.innerHTML = "Loading...";
+
+  try {
+    const response = await axios.get(API_URL);
+    const carts = response.data;
+    
+    // Hide loading message and display the data
+    elLoading.innerHTML = "";
+    showData(carts);
+  } catch (error) {
+    // Handle any errors
+    console.error("Error fetching cart data:", error);
+    elLoading.innerHTML = "Failed to load carts.";
+  }
+};
+
+// Function to render the cart data on the page
+const showData = (data) => {
+  // Use map to create an array of HTML strings
+  const cartHTML = data.map(cart => {
+    // Check if the cart has products before trying to access them
+    const productsHTML = cart.products.map(product => `
+      <li>
+        <strong>Product ID:</strong> ${product.productId}, <strong>Quantity:</strong> ${product.quantity}
+      </li>
+    `).join('');
+
+    return `
+      <div class="cart-item">
+        <h2>Cart ID: ${cart.id}</h2>
+        <p><strong>Date:</strong> ${new Date(cart.date).toLocaleDateString()}</p>
+        <h3>Products:</h3>
+        <ul>
+          ${productsHTML}
+        </ul>
+      </div>
+    `;
+  }).join('');
+
+  elCartList.innerHTML = cartHTML;
+};
+
+// Initial call to fetch the data when the script runs
+fetchCarts();

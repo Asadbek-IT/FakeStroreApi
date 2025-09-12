@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FakeStore API ~ Savat</title>
+
+    <link rel="stylesheet" href="styles/carts.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+/*
+ * Google Fonts: Poppins and Inter are already linked in the HTML.
+ * We will use them for typography.
+ */
+:root {
+  --background-dark: #1e1e1e;
+  --background-light: #2c2c2c;
+  --text-color: #f4f4f4;
+  --accent-color: #007bff;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --border-radius: 12px;
+}
+
+/* General styles and typography */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background-dark);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.site-header {
+  background-color: var(--background-light);
+  box-shadow: 0 4px 8px var(--shadow-color);
+  padding: 20px 0;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--accent-color);
+}
+
+.btn-outline {
+  border: 2px solid var(--accent-color);
+  border-radius: var(--border-radius);
+  padding: 8px 16px;
+  color: var(--accent-color);
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background-color: var(--accent-color);
+  color: var(--background-dark);
+}
+
+/* Main content */
+main {
+  padding: 40px 0;
+}
+
+.cart-section {
+  background-color: var(--background-light);
+  padding: 40px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.section-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent-color);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.loading-message {
+  text-align: center;
+  font-style: italic;
+  color: #ccc;
+  margin-top: 20px;
+}
+
+.cart-list {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.cart-item {
+  background-color: var(--background-light);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: 0 8px 20px var(--shadow-color);
+  transition: transform 0.3s ease;
+  color: var(--text-color);
+}
+
+.cart-item:hover {
+  transform: translateY(-5px);
+}
+
+.cart-item h2 {
+  font-size: 1.5rem;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+}
+
+.cart-item p {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 5px;
+}
+
+.cart-item h3 {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  margin-top: 15px;
+  margin-bottom: 8px;
+}
+
+.cart-item ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.cart-item ul li {
+  background-color: var(--background-dark);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-item ul li strong {
+  color: var(--accent-color);
+}
+
+/* Footer */
+.site-footer {
+  background-color: var(--background-dark);
+  color: #ffffff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-footer p {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.socials {
+  display: flex;
+  gap: 15px;
+}
+
+.socials a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.socials a:hover {
+  background-color: #ffffff;
+  color: var(--background-dark);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nav {
+    margin-top: 15px;
+    justify-content: center;
+  }
+  
+  .footer-inner {
+      flex-direction: column;
+      gap: 10px;
+  }
+}
+
+
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <span class="logo-text">FakeStore API</span>
+            </a>
+            <nav class="nav">
+                <a href="index2.html" class="nav-link">Основной сайт</a>
+                <a href="index.html" class="nav-link">Товары</a>
+                <a href="index3.html" class="nav-link btn-outline">Корзина</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="cart-section">
+            <div class="container">
+                <h1 class="section-title">Твоя корзина</h1>
+                <p class="loading-message">loading...</p>
+                <div class="cart-list"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>
+                &copy; <span id="year"></span> FakeStore API - Демо карзина
+            </p>
+            <div class="socials">
+                <a href="#" aria-label="github">GH</a>
+                <a href="#" aria-label="twitter">TW</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="script2,js"></script>
+    
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

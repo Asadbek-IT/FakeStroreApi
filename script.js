@@ -15,7 +15,6 @@ function showData(products) {
   products.map((item, index) => {
     elList.innerHTML += `
       <div class="product">
-        <button class="btn" data-id=${item.id}>Buy</button>
         <p class="category">${item.category}</p>
         <p class="decribe">
           ${item.description.slice(0, 40)}...
