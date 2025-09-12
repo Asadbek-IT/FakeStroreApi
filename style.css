@@ -1,3 +1,37 @@
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        
+        .nav-list {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            background-color: var(--background-dark);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
 /* CSS-переменные для удобства управления темой */
 :root {
   --background-dark: #1e1e1e;
